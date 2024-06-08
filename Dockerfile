@@ -12,8 +12,9 @@ COPY recoll-buster.list /etc/apt/sources.list.d/
 #COPY recoll-bookworm.list /etc/apt/sources.list.d/
 
 RUN true \
+  && apt-get update \
   && apt-get install -y --no-install-recommends \
-      python-recoll python3-recoll \
+      python-recoll python3-recoll recollcmd \
       python3 python3-pip git \
       poppler-utils unrtf antiword unzip \
   && apt autoremove \
