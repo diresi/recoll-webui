@@ -24,6 +24,12 @@ RUN true \
 RUN mkdir /docs && mkdir /root/.recoll
 COPY recoll.conf /root/.recoll/recoll.conf
 
+# use .recoll from /docs mount, only works after first indexing is done and
+# index was copied there:
+RUN true \
+  && rm -r /root/.recoll \
+  && ln -s /docs/.recoll /root/.recoll
+
 RUN cd / && git clone https://framagit.org/medoc92/recollwebui.git
 
 VOLUME /docs
